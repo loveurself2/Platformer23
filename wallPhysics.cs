@@ -32,7 +32,6 @@ public class WallController : MonoBehaviour
     {
         if (isPlayerNear)
         {
-            // Check if the player is pressing the jump button
             if (Input.GetButtonDown("Jump"))
             {
                 isJumping = true;
@@ -41,7 +40,6 @@ public class WallController : MonoBehaviour
 
         if (isJumping)
         {
-            // Apply a wall jump force to the player
             playerRb.velocity = new Vector2(wallNormal.x * -wallJumpForce, wallJumpForce);
             isJumping = false;
             isWallSliding = false;
@@ -49,7 +47,6 @@ public class WallController : MonoBehaviour
 
         if (isWallSliding)
         {
-            // Apply a wall slide speed to the player
             playerRb.velocity = new Vector2(playerRb.velocity.x, -wallSlideSpeed);
         }
     }
@@ -58,7 +55,6 @@ public class WallController : MonoBehaviour
     {
         if (isPlayerNear && !isJumping)
         {
-            // Check if the player collided with the wall
             foreach (ContactPoint2D contact in other.contacts)
             {
                 if (Mathf.Abs(contact.normal.x) > 0.5f)
@@ -75,7 +71,6 @@ public class WallController : MonoBehaviour
     {
         if (isWallSliding)
         {
-            // Stop the wall slide if the player leaves the wall
             isWallSliding = false;
         }
     }
